@@ -7,6 +7,5 @@ services:
       dockerfile: Dockerfile
     restart: 'always'
     container_name: logger-rpcap
-    volumes:
-      # CHANGE ME
-      - ./config.default.yml:/app/config.yml
+    # volumes:
+    #   - ./config.yml:/app/config.yml

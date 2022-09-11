@@ -1,46 +1,73 @@
-# Lostark DPS Meter
+# Lost Ark Logger (Remote Version)
 
-A fork of [https://github.com/karaeren/LostArkLogger](https://github.com/karaeren/LostArkLogger) with the capability to remote log packets via winpcap for docker.
+A fork of [https://github.com/rexlManu/la-dpsmeter](https://github.com/rexlManu/la-dpsmeter) with the capability to remote log packets to any HTTP server via WinPcap for Docker.  
+This branch adds HttpBridge functionality from the [main logger](https://github.com/shalzuth/LostArkLogger) to allow easy integration with LOA Details or any other app that depends on an HTTP server based listener.  
 
-## Setup
+A UI is not included and packets must be processed by an external UI such as [LOA Details](https://github.com/karaeren/loa-details).  
 
-### Main machine (windows)
+---
+## Disclaimer
+This branch is generally aimed at being ran as a docker container on the **same PC** as the game. It will also work on remote setups but this currently isn't covered in this write-up.
 
-- Install winpcap
-- Create a batch file with the following content:
+# Logger Setup (Windows)
 
-```shell
-@REM change directory to C:\Program Files (x86)\WinPcap
-@cd C:\Program Files (x86)\WinPcap
-@REM start the rpcapd service
-@start rpcapd.exe -p 1337 -n
+## Dependencies
+
+This setup requires the following dependencies:  
+*If you have them installed already, you can skip to [this section](#automatic).*
+- Install [WinPcap](https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe)
+  - If you have Npcap installed you'll need to uninstall it.
+- Install [Docker (Desktop)](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe)
+  - This [guide](https://docs.docker.com/desktop/install/windows-install/) from Docker should help if you get stuck
+- Install [git](https://github.com/git-for-windows/git/releases/download/v2.37.3.windows.1/Git-2.37.3-64-bit.exe)
+
+## Install
+
+### Automatic Install
+Once you have all dependencies installed, you can run the [PowerShell script](https://github.com/guy0090/la-dpsmeter/blob/standalone/install.ps1) provided.  
+
+This script will setup the docker container for the logger service and set the `rpcapd` service to start automatically on a default port of `9393` with null authentication **enabled**.  
+
+```PowerShell
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/guy0090/la-dpsmeter/standalone/clone_install.ps1 -OutFile .\clone_install.ps1
+
+# If you need to modify rpcapd default port or any other options, modify the script before running it
+# Temporarily allow script execution for this PowerShell session
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process .\clone_install.ps1
 ```
-- Open your port on the firewall (1337 in this example)
-- Execute the batch file every time you want to have dps meter
 
-### Remote server
-Default `config.yml`
-```yaml
-region: Steam
-p-cap-address: 192.168.178.99
-p-cap-interface: ''
-p-cap-port: 1337
-web-port: 1338
+After the script finishes, navigate into the new `la-dpsmeter` folder and copy/rename `config.default.yml` to `config.yml`.  
+For this example, only `p-cap-address` needs to changed. Change it to **your local IP**.
+
+Get your local IP with the following command:
+```PowerShell
+(
+    Get-NetIPConfiguration |
+    Where-Object {
+        $_.IPv4DefaultGateway -ne $null -and
+        $_.NetAdapter.Status -ne "Disconnected"
+    }
+).IPv4Address.IPAddress
 ```
 
-You just have to edit the `p-cap-address` to the ip of your pc of running rpcapd.
+Once you've configured `config.yml`, uncomment lines `10-11` in `docker-compose.yml` and run `docker-compose -p loadps up -d` to start the container.  
+Done! All logged packets by default are sent to `http://host.docker.internal:1338` (your host PCs IP)  
 
-#### Run the container
+A [custom branch](https://github.com/guy0090/loa-details/tree/standalone) of LOA Details can be used to test your setup. You'll need to build it yourself to get it working.
 
 ```bash
-  docker run -it -v $(pwd)/config.yml:/app/config.yml -p 1338:1338 rexlmanu/la-dpsmeter:latest
+# Clone and enter dir
+git clone -b standalone https://github.com/guy0090/loa-details && cd loa-details
+
+# Install packages
+npm i
+
+# Run in dev mode
+npm run dev
 ```
 
-If the container could connect to your machine you can run the container in detached (`-d`) mode.
-
-### DPS Meter
-
-You can find the dps meter at `http://server-ip:1338` (port 1338 in this example).
+### Manual Install
+**SOON(tm)**
 
 # WARNING
 This is not endorsed by Smilegate or AGS. Usage of this tool isn't defined by Smilegate or AGS. I do not save your personal identifiable data. Having said that, the .pcap generated can potentially contain sensitive information (specifically, a one-time use token)

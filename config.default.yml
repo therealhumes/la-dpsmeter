@@ -1,5 +1,5 @@
 region: Steam
-p-cap-address: 192.168.0.99
+p-cap-address: 192.168.0.1
 p-cap-interface: ''
 p-cap-port: 9393
 web-host: host.docker.internal
