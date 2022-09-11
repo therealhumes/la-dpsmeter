@@ -33,7 +33,8 @@ Invoke-WebRequest -Uri https://raw.githubusercontent.com/guy0090/la-dpsmeter/sta
 
 # If you need to modify rpcapd default port or any other options, modify the script before running it
 # Temporarily allow script execution for this PowerShell session
-Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process .\clone_install.ps1
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
+.\clone_install.ps1
 ```
 
 After the script finishes, navigate into the new `la-dpsmeter` folder and copy/rename `config.default.yml` to `config.yml`.  
