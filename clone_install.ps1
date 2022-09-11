@@ -3,14 +3,14 @@ $Port = 9393
 
 $CurrentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
 if ($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-  #$CurrentPath = Split-Path -Path (Get-Location) -Leaf
-  #if ($CurrentPath = "la-dpsmeter") {
-  #  Set-Location ..
-  #}
-  #
-  ## Clone the repo
-  #git clone -b standalone https://github.com/guy0090/la-dpsmeter.git
-  #Set-Location ./la-dpsmeter
+  $CurrentPath = Split-Path -Path (Get-Location) -Leaf
+  if ($CurrentPath = "la-dpsmeter") {
+    Set-Location ..
+  }
+
+  # Clone the repo
+  git clone -b standalone https://github.com/guy0090/la-dpsmeter.git
+  Set-Location ./la-dpsmeter
 
   # Get rpcapd service
   $Service = Get-Service -Name rpcapd

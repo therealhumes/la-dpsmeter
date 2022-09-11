@@ -14,7 +14,7 @@ This branch is generally aimed at being ran as a docker container on the **same 
 ## Dependencies
 
 This setup requires the following dependencies:  
-*If you have them installed already, you can skip to [this section](#automatic).*
+*If you have them installed already, you can skip to [this section](#automatic-install).*
 - Install [WinPcap](https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe)
   - If you have Npcap installed you'll need to uninstall it.
 - Install [Docker (Desktop)](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe)
@@ -24,7 +24,7 @@ This setup requires the following dependencies:
 ## Install
 
 ### Automatic Install
-Once you have all dependencies installed, you can run the [PowerShell script](https://github.com/guy0090/la-dpsmeter/blob/standalone/install.ps1) provided.  
+Once you have all dependencies installed, you can run the provided [PowerShell script](https://github.com/guy0090/la-dpsmeter/blob/standalone/clone_install.ps1).  
 
 This script will setup the docker container for the logger service and set the `rpcapd` service to start automatically on a default port of `9393` with null authentication **enabled**.  
 
@@ -40,7 +40,7 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
 After the script finishes, navigate into the new `la-dpsmeter` folder and copy/rename `config.default.yml` to `config.yml`.  
 For this example, only `p-cap-address` needs to changed. Change it to **your local IP**.
 
-Get your local IP with the following command:
+Get your local IP with the following command ([src](https://stackoverflow.com/a/44685122)):
 ```PowerShell
 (
     Get-NetIPConfiguration |
