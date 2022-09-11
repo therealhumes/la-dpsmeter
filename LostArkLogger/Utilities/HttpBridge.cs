@@ -69,7 +69,16 @@ namespace LostArkLogger
             {
                 if (this.messageQueue.TryDequeue(out var sendMessage))
                 {
-                    await this.SendRequest(sendMessage);
+                    try
+                    {
+                        await this.SendRequest(sendMessage);
+                    }
+                    catch (Exception e)
+                    {
+#if DEBUG
+                        Console.WriteLine(e.Message);
+#endif
+                    }
                 }
                 else
                 {
