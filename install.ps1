@@ -4,7 +4,7 @@ $Port = 9393
 $CurrentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
 if ($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
   # Clone the repo
-  git clone https://github.com/guy0090/la-dpsmeter.git
+  git clone -b standalone https://github.com/guy0090/la-dpsmeter.git
   Set-Location ./la-dpsmeter
 
   $Service = Get-Service -Name rpcapd
@@ -19,7 +19,7 @@ if ($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administ
   Set-Service -InputObject $Service -StartupType Automatic -Status Running -PassThru
 
   # Install and start container
-  docker-compose -p loadps up -d
+  docker-compose -p loadps up --build -d
 
   Write-Host ""
   Write-Host "All services are now up and running. Bye!"
