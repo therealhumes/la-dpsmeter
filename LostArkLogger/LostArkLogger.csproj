@@ -9,9 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\SharpPcap\SharpPcap.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\websocket-sharp\websocket-sharp\websocket-sharp.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="IronSnappy" Version="1.3.0" />
