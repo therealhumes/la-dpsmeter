@@ -14,6 +14,8 @@ public class Configuration
     public int PCapPort = 1337;
     public int WebPort = 1338;
 
+    public string WebHost = "host.docker.internal";
+
     public static byte[] ReadXorBinary(string name)
     {
         var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("LostArkLogger.Resources." + name);

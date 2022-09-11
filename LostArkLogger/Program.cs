@@ -1,13 +1,5 @@
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Reflection;
-using System.Security.Principal;
 using LoggerLinux.Configuration;
-using LostArkLogger.Utilities;
+using System.Net.NetworkInformation;
 
 namespace LostArkLogger
 {
@@ -16,10 +8,9 @@ namespace LostArkLogger
         public static void Main(string[] args)
         {
             // Shutdown hook
-            AppDomain.CurrentDomain.ProcessExit += (sender, eventArgs) => { LostArkLogger.Instance.onExit(); };
+            AppDomain.CurrentDomain.ProcessExit += (sender, eventArgs) => { LostArkLogger.Instance.Server?.Stop(); };
+            LostArkLogger.Instance.onLaunch(args);
 
-            LostArkLogger.Instance.onLaunch();
-            // Hold program open
             while (true)
             {
                 Console.ReadLine();
@@ -45,22 +36,14 @@ namespace LostArkLogger
         }
 
         public ConfigurationProvider ConfigurationProvider;
-        private ApplicationServer? Server;
+        public HttpBridge? Server;
 
-        public void onLaunch()
+        public void onLaunch(string[] args)
         {
             this.ConfigurationProvider = new ConfigurationProvider();
-            this.Server = new ApplicationServer();
+            this.Server = new HttpBridge() { args = args };
 
             this.Server.Start();
-        }
-
-        public void onExit()
-        {
-            if (Server != null)
-            {
-                this.Server.close();
-            }
         }
     }
 }

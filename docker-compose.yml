@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  logger-rpcap:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: 'always'
+    container_name: logger-rpcap
+    volumes:
+      # CHANGE ME
+      - ./config.default.yml:/app/config.yml
