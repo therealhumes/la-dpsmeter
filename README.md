@@ -1,6 +1,7 @@
 # Lost Ark Logger (Remote Version)
 
-A fork of [https://github.com/rexlManu/la-dpsmeter](https://github.com/rexlManu/la-dpsmeter) with the capability to remote log packets to any HTTP server via WinPcap for Docker.  
+A fork of [https://github.com/rexlManu/la-dpsmeter](https://github.com/rexlManu/la-dpsmeter) with the capability to remote log packets to any HTTP server via Npcap for Docker.  
+
 This branch adds HttpBridge functionality from the [main logger](https://github.com/shalzuth/LostArkLogger) to allow easy integration with LOA Details or any other app that depends on an HTTP server based listener.  
 
 A UI is not included and packets must be processed by an external UI such as [LOA Details](https://github.com/karaeren/loa-details).  
@@ -15,8 +16,8 @@ This branch is generally aimed at being ran as a docker container on the **same 
 
 This setup requires the following dependencies:  
 *If you have them installed already, you can skip to [this section](#automatic-install).*
-- Install [WinPcap](https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe)
-  - If you have Npcap installed you'll need to uninstall it.
+- Install [Npcap](https://npcap.com/dist/npcap-1.71.exe)
+  - If you have WinPcap installed you'll need to uninstall it.
 - Install [Docker (Desktop)](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe)
   - This [guide](https://docs.docker.com/desktop/install/windows-install/) from Docker should help if you get stuck
 - Install [git](https://github.com/git-for-windows/git/releases/download/v2.37.3.windows.1/Git-2.37.3-64-bit.exe)
@@ -26,19 +27,22 @@ This setup requires the following dependencies:
 ### Automatic Install
 Once you have all dependencies installed, you can run the provided [PowerShell script](https://github.com/guy0090/la-dpsmeter/blob/standalone/clone_install.ps1).  
 
-This script will setup the docker container for the logger service and set the `rpcapd` service to start automatically on a default port of `9393` with null authentication **enabled**.  
+This script will setup the docker container for the logger service and install the `rpcapd` service to start automatically on a default port of `9393` with **null authentication enabled**. The `rpcapd` service is downloaded from a [fork of libpcap](https://github.com/guy0090/libpcap).  
 
+### Download Script
 ```PowerShell
 Invoke-WebRequest -Uri https://raw.githubusercontent.com/guy0090/la-dpsmeter/standalone/clone_install.ps1 -OutFile .\clone_install.ps1
-
-# If you need to modify rpcapd default port or any other options, modify the script before running it
+```
+### Run Script  
+If you need to modify rpcapd default port or any other options, modify the script before running it.
+```PowerShell
 # Temporarily allow script execution for this PowerShell session
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
 .\clone_install.ps1
 ```
 
 After the script finishes, navigate into the new `la-dpsmeter` folder and copy/rename `config.default.yml` to `config.yml`.  
-For this example, only `p-cap-address` needs to changed. Change it to **your local IP**.
+For this example, only `p-cap-address` needs to be changed. Change it to **your local IP**.
 
 Get your local IP with the following command ([src](https://stackoverflow.com/a/44685122)):
 ```PowerShell
