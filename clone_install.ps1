@@ -46,8 +46,8 @@ if ($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administ
     Start-Service rpcapd
 
     Write-Host "`nrpcapd service installed and started`n"
-  } else {
-    Write-Host "`nrpcapd service found, starting it...`n"
+  } elseif ($Service.Status -ne "Running") {
+    Write-Host "`nStarting rpcapd service`n"
     Start-Service -Name rpcapd
   }
 
@@ -55,7 +55,7 @@ if ($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administ
   docker-compose -p loadps up --build -d
   docker-compose -p loadps stop
 
-  Write-Host "`nAll services are now setup. Bye!"
+  Write-Host "`nAll services are now setup. Bye!" -ForegroundColor Green;
 } else {
-  Write-Host 'You must run this script as administrator.';
+  Write-Host "You must run this script as administrator." -ForegroundColor Red;
 }

@@ -9,3 +9,4 @@ services:
     container_name: logger-rpcap
     # volumes:
     #   - ./config.yml:/app/config.yml
+    #   - '~/Documents/Lost Ark Logs:/mnt/raid1/apps/Lost Ark Logs'
