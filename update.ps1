@@ -46,7 +46,7 @@ if ($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administ
     # Start rpcapd service
     Start-Service -Name rpcapd
 
-    Write-Host "`nrpcapd service installed and started`n"
+    Write-Host "`nrpcapd service installed and started"
   } elseif ($Service.Status -ne "Running") {
     # Check if rpcapd is running and start it if it isn't
     # Not going to attempt to update it, should only rarely be needed

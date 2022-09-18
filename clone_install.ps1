@@ -18,6 +18,9 @@ if ($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administ
   git clone -b standalone https://github.com/guy0090/la-dpsmeter.git
   Set-Location ./la-dpsmeter
 
+  # Preemptively move docker-compose example to allow building of container later on
+  Move-Item -Force -Path .\docker-compose.default.yml -Destination .\docker-compose.yml
+
   # Setup rpcapd service
   # TODO: Check for WinPcap install and cancel if present
   $Service = Get-Service -Name rpcapd -ErrorAction SilentlyContinue
@@ -43,7 +46,7 @@ if ($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administ
     Remove-Item -Path .\Build -Recurse -Force
 
     # Start rpcapd
-    Start-Service rpcapd
+    Start-Service -Name rpcapd
 
     Write-Host "`nrpcapd service installed and started`n"
   } elseif ($Service.Status -ne "Running") {

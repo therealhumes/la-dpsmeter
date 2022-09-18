@@ -17,7 +17,7 @@ This branch is generally aimed at being ran as a docker container on the **same 
 This setup requires the following dependencies:  
 *If you have them installed already, you can skip to [this section](#automatic-install).*
 - Install [Npcap](https://npcap.com/dist/npcap-1.71.exe)
-  - If you have WinPcap installed you'll need to uninstall it.
+  - If you have WinPcap installed you may need to uninstall it.
 - Install [Docker (Desktop)](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe)
   - This [guide](https://docs.docker.com/desktop/install/windows-install/) from Docker should help if you get stuck
 - Install [git](https://github.com/git-for-windows/git/releases/download/v2.37.3.windows.1/Git-2.37.3-64-bit.exe)
