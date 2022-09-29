@@ -278,7 +278,7 @@ namespace LostArkLogger
                     case 2: //Snappy
                         //https://github.com/robertvazan/snappy.net
                         payload = IronSnappy.Snappy.Decode(payload.ToArray()).Skip(16).ToArray();
-                        //payload = SnappyCodec.Uncompress(payload.Skip(Properties.Settings.Default.Region == Region.Russia ? 4 : 0).ToArray()).Skip(16).ToArray();
+                        //payload = SnappyCodec.Uncompress(payload.Skip(LostArkLogger.Instance.ConfigurationProvider.Configuration.Region == Region.Russia ? 4 : 0).ToArray()).Skip(16).ToArray();
                         break;
                     case 3: //Oodle
                         payload = Oodle.Decompress(payload).Skip(16).ToArray();
