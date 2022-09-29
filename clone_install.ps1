@@ -19,7 +19,7 @@ if ($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administ
   Set-Location ./la-dpsmeter
 
   # Preemptively move docker-compose example to allow building of container later on
-  Move-Item -Force -Path .\docker-compose.default.yml -Destination .\docker-compose.yml
+  Copy-Item -Force -Path .\docker-compose.default.yml -Destination .\docker-compose.yml
 
   # Setup rpcapd service
   # TODO: Check for WinPcap install and cancel if present
