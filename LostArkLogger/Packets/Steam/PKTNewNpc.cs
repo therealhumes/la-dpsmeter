@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+
 namespace LostArkLogger
 {
     public partial class PKTNewNpc
@@ -12,8 +11,8 @@ namespace LostArkLogger
             b_2 = reader.ReadByte();
             if (b_2 == 1)
                 u64_0 = reader.ReadUInt64();
-            npcStruct = reader.Read<NpcStruct>();
             b_3 = reader.ReadByte();
+            npcStruct = reader.Read<NpcStruct>();
         }
     }
 }

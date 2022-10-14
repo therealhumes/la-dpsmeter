@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+
 namespace LostArkLogger
 {
     public partial class PKTPartyStatusEffectAddNotify
@@ -8,8 +7,8 @@ namespace LostArkLogger
         {
             PartyId = reader.ReadUInt64();
             b_0 = reader.ReadByte();
-            PlayerIdOnRefresh = reader.ReadUInt64();
             statusEffectDatas = reader.ReadList<StatusEffectData>();
+            PlayerIdOnRefresh = reader.ReadUInt64();
         }
     }
 }

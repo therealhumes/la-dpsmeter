@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+
 namespace LostArkLogger
 {
     public partial class subPKTNewNpc5
