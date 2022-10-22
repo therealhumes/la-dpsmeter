@@ -14,7 +14,7 @@ namespace LostArkLogger
         PKTNewProjectile = 0x3E70,
         PKTPartyStatusEffectAddNotify = 0xD466,
         PKTPartyStatusEffectRemoveNotify = 0x3E66,
-        PKTRaidBossKillNotify = 0x7E9,
+        PKTRaidBossKillNotify = 0x376F,
         PKTRaidResult = 0x93AE,
         PKTRemoveObject = 0x29DC,
         PKTSkillDamageAbnormalMoveNotify = 0x55E1,
@@ -24,7 +24,7 @@ namespace LostArkLogger
         PKTStatChangeOriginNotify = 0xE100,
         PKTStatusEffectAddNotify = 0xA6E0,
         PKTStatusEffectRemoveNotify = 0x53B7,
-        PKTTriggerBossBattleStatus = 0x4FB3,
+        PKTTriggerBossBattleStatus = 0x4FB4,
         PKTTriggerStartNotify = 0xAC98,
     }
 }
