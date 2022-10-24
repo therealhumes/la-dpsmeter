@@ -167,6 +167,14 @@ namespace LostArkLogger
                 BackAttack = hitOption == HitOption.HIT_OPTION_BACK_ATTACK,
                 FrontAttack = hitOption == HitOption.HIT_OPTION_FRONTAL_ATTACK
             };
+
+            String sourceId = sourceEntity.EntityId.ToString("X");
+            String sourceName = sourceEntity.Name;
+            String usedSkill = skillId.ToString();
+
+            // Skip spamming "UnknownSkillEffect" in logs
+            if (sourceId == "0" && sourceName == "0" && usedSkill == "0") return;
+
             onCombatEvent?.Invoke(log);
             currentEncounter.RaidInfos.Add(log);
             Logger.AppendLog(8, sourceEntity.EntityId.ToString("X"), sourceEntity.Name, skillId.ToString(),
