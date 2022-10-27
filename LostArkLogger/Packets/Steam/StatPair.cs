@@ -1,4 +1,3 @@
-
 namespace LostArkLogger
 {
     public partial class StatPair

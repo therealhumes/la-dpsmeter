@@ -1,4 +1,3 @@
-
 namespace LostArkLogger
 {
     public partial class PKTSkillDamageAbnormalMoveNotify
@@ -6,10 +5,10 @@ namespace LostArkLogger
         public void SteamDecode(BitReader reader)
         {
             skillDamageMoveEvents = reader.ReadList<SkillDamageMoveEvent>();
+            SourceId = reader.ReadUInt64();
+            SkillId = reader.ReadUInt32();
             u32_0 = reader.ReadUInt32();
             SkillEffectId = reader.ReadUInt32();
-            SkillId = reader.ReadUInt32();
-            SourceId = reader.ReadUInt64();
             b_0 = reader.ReadByte();
         }
     }
