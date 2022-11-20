@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 namespace LostArkLogger
 {
     public enum OpCodes_Korea : UInt16
