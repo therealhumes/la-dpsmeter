@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System;
-using System.Collections.Generic;
 namespace LostArkLogger
 {
     public partial class PCStruct
@@ -58,11 +56,15 @@ namespace LostArkLogger
             b_12 = reader.ReadByte();
 
             // Dirty fix for broken names field
-            var nonASCII = @"[^\x00-\x7F]+";
-            var rgx = new Regex(nonASCII);
-            var name = Npc.GetPcClass(ClassId);
-            if (rgx.IsMatch(Name))
-                Name = Npc.GetPcClass(ClassId);
+            try {
+                var nonASCII = @"[^\x00-\x7F]+";
+                var rgx = new Regex(nonASCII);
+                if (rgx.IsMatch(Name))
+                    Name = Npc.GetPcClass(ClassId);
+            } catch (Exception e) {
+                Console.WriteLine("Failed matching PC name:\n" + e);
+                Name = "@BAD_NAME@" + new Random().Next(1000, 9999);
+            }
         }
     }
 }
