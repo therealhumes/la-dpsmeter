@@ -1,5 +1,6 @@
-using System;
 using System.Collections.Generic;
+using LoggerLinux.Configuration;
+
 namespace LostArkLogger
 {
     public partial class NpcStruct
@@ -61,5 +62,6 @@ namespace LostArkLogger
         public Byte b_28;
         public Byte b_29;
         public Byte b_30;
+        public SkillRunes skillRunes;
     }
 }

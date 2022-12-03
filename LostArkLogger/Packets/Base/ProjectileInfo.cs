@@ -1,5 +1,6 @@
-using System;
 using System.Collections.Generic;
+using LoggerLinux.Configuration;
+
 namespace LostArkLogger
 {
     public partial class ProjectileInfo
@@ -34,5 +35,6 @@ namespace LostArkLogger
         public Byte b_2;
         public Byte b_3;
         public Byte b_4;
+        public Byte b_5;
     }
 }

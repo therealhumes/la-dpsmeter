@@ -1,5 +1,6 @@
-using System;
 using System.Collections.Generic;
+using LoggerLinux.Configuration;
+
 namespace LostArkLogger
 {
     public partial class PKTStatusEffectRemoveNotify

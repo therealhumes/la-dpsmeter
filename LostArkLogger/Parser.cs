@@ -225,7 +225,7 @@ namespace LostArkLogger
             return (OpCodes) Enum.Parse(typeof(OpCodes), opCodeString);
         }
 
-        Byte[] XorTableSteam = ObjectSerialize.Decompress(Configuration.ReadXorBinary("xor_Steam.bin"));
+        Byte[] XorTableSteam = Convert.FromBase64String("DgZIHKcHjzVicTApEJcqhC+gJuv5g3PkLCf8Lal73VYgnLKAOs3naIrwmZMaXmPgxDZHSSJglln0HUXWdmaFF5gC3Au30+UZIQ+HuFJTfTu+d3r4EhhfKEKQ3mujoa3Hq2cuxQzjaiSdwzEr/goBtEDVOcAz8kOfWhYFzIFlnkG6T29GTO+JjdHpTjf6fPvxpZJYctu7vKhKRBvZOOyCynjOrG3hpO31royR/SPzoj3IcFGmvcuOA9h1BLZs9+KGHh/UvxX/te5+r88lCN/Jwohu9lez6kvBAGkNmuaxuT8T6FuVMlSbsFA+xmFdXNo8eQnSf3Rk1xSUqjRNEYtV0A==");
 
         //Byte[] XorTableRu = ObjectSerialize.Decompress(Properties.Resources.xor_ru);
         Byte[] XorTableKorea = ObjectSerialize.Decompress(Configuration.ReadXorBinary("xor_Korea.bin"));
@@ -570,7 +570,7 @@ namespace LostArkLogger
                     }
                     else if (opcode == OpCodes.PKTRemoveObject)
                     {
-                        var obj = new PKTRemoveObject(new BitReader(payload));
+                        //var obj = new PKTRemoveObject(new BitReader(payload));
                         //var projectile = new PKTRemoveObject { Bytes = converted };
                         //ProjectileOwner.Remove(projectile.ProjectileId, projectile.OwnerId);
                     }
