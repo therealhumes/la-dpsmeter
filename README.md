@@ -1,4 +1,4 @@
-# LostArk Logger and Custom Web Overlay (Docker Version)
+# LostArk Logger and Custom Web Overlay (Docker)
 
 A fork of [https://github.com/karaeren/LostArkLogger](https://github.com/karaeren/LostArkLogger) with the capability to
 remote log packets via winpcap for Docker and display the logger in a custom web overlay.
