@@ -59,6 +59,7 @@ cd la-dpsmeter
 
 Open the config.yml found in the la-dpsmeter folder and update the `p-cap-address` line to your IP address. 
 
+<<<<<<< HEAD
 You can get your local IP with the following command ([src](https://stackoverflow.com/a/44685122)):
 ```PowerShell
 (
@@ -68,6 +69,10 @@ You can get your local IP with the following command ([src](https://stackoverflo
         $_.NetAdapter.Status -ne "Disconnected"
     }
 ).IPv4Address.IPAddress
+=======
+```powershell
+git clone https://github.com/rexlManu/la-dpsmeter.git
+>>>>>>> 2903412ae9028a3ffb1e9d1325e8d6f8eeed173b
 ```
 
 Alternatively, you can run `ipconfig` in PowerSHell and pull the top local lan address.
@@ -78,8 +83,15 @@ Start up Docker if it is not already running. You will have installed this in th
 
 Run the following command from the la-dpsmeter directory.
 
+<<<<<<< HEAD
 ```bash
 docker run -d --name la-dpsmeter --restart unless-stopped -v ${pwd}/config.yml:/app/config.yml -v ${pwd}/logs:/mnt/raid1/apps/'Lost Ark Logs' -p 1338:1338 ghcr.io/therealhumes/la-dpsmeter:main
+=======
+* This should work in powershell, replace ${pwd} with %cd% if using command prompt.
+
+```powershell
+docker run -d --name la-dpsmeter --restart unless-stopped -v ${pwd}/config.yml:/app/config.yml -v ${pwd}/logs:/mnt/raid1/apps/'Lost Ark Logs' -p 1338:1338 ghcr.io/rexlManu/la-dpsmeter:main
+>>>>>>> 2903412ae9028a3ffb1e9d1325e8d6f8eeed173b
 ```
 
 ## Sixth step: Access Overlay
