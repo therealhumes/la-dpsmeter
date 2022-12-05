@@ -87,10 +87,10 @@ docker run -d --name la-dpsmeter --restart unless-stopped -v ${pwd}/config.yml:/
 You can access the web overlay by opening the following url in your browser:
 
 ```
-http://<ip-address-where-dps-meter-is-running>:1338
+http://<dps-meter-machines-ip-address>:1338
 ```
 
-If you are running the DPS meter on your main machine along with Lost Ark, this ip address will be the same as the fourth step.
+If you are running the DPS meter on your main machine, this ip address will be the same as the fourth step.
 
 # Future Updates
 
