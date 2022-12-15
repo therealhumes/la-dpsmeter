@@ -244,7 +244,7 @@ const props = defineProps({
   wrapperStyle: String,
   nameDisplay: {
     type: String,
-    default: "name+class",
+    default: "name+gear+class",
   },
 });
 const entitiesCopy = ref([]);

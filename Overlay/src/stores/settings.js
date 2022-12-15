@@ -57,7 +57,7 @@ export const useSettingsStore = defineStore("settings", {
           autoMinimize: false,
           autoMinimizeTimer: 60,
           minimizeToTaskbar: false,
-          nameDisplay: "name+class",
+          nameDisplay: "name+gear+class",
           nameDisplayV2: "name+gear+class",
         },
         design: {
@@ -90,7 +90,7 @@ export const useSettingsStore = defineStore("settings", {
           },
           deathTime: {
             name: "Death Time",
-            enabled: false,
+            enabled: true,
           },
           damagePercent: {
             name: "D% (Damage Percent)",
@@ -110,7 +110,7 @@ export const useSettingsStore = defineStore("settings", {
           },
           baRate: {
             name: "Back Attack Rate",
-            enabled: false,
+            enabled: true,
           },
           counterCount: {
             name: "Counter Count",

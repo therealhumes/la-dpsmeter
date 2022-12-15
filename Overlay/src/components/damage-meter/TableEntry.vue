@@ -164,7 +164,8 @@ const entryName = computed(() => {
     if (
       props.nameDisplay.includes("gear") &&
       props.player.gearScore &&
-      props.player.gearScore != 0
+      props.player.gearScore != 0 &&
+      props.player.gearScore != 1
     ) {
       res += props.player.gearScore.toFixed(0);
       hasGearScore = true;
